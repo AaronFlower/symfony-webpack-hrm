@@ -3,14 +3,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const join = require('path').join
 
 module.exports = {
-	entry: [
-		'webpack-dev-server/client?http://localhost:9000',
-		'webpack/hot/only-dev-server',
-		'./web/js/index.js'
-	],
+	entry: {
+		base: ['./web/js/base.js', 'webpack-dev-server/client?http://localhost:9000', 'webpack/hot/only-dev-server'],
+		main: ['./web/js/main.js', 'webpack-dev-server/client?http://localhost:9000', 'webpack/hot/only-dev-server']
+	},
 
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].js',
 		path: join(__dirname, 'web/assets'),
 		publicPath: '/assets/'
 	},
