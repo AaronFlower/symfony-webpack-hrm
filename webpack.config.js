@@ -1,5 +1,6 @@
 const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const cssTextPlugin = new ExtractTextPlugin('style.[name].css')
 const join = require('path').join
 
 module.exports = {
@@ -35,7 +36,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
+				use: cssTextPlugin.extract({
 					fallback: 'style-loader',
 					use: 'css-loader'
 				}),
@@ -46,6 +47,7 @@ module.exports = {
 
 	plugins: [
 		new HotModuleReplacementPlugin(),
-		new ExtractTextPlugin('style.css')
+		cssTextPlugin
+		// new ExtractTextPlugin('style.css')
 	]
 }
